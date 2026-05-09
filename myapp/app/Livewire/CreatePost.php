@@ -18,6 +18,8 @@ class CreatePost extends Component
     #[Validate("required", message: "本文は必須です。")]
     public $body = "";
 
+    public $flashKey = 0;
+
     public function save() {
         $this->validate();
 
@@ -30,7 +32,7 @@ class CreatePost extends Component
         $this->reset(['title', 'body']);
         session()->flash('status', '記事を投稿しました！');
 
-
+        $this->flashKey++;
     }
 
     public function render()

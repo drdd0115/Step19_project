@@ -20,6 +20,8 @@ class MyPosts extends Component
         $this->resetPage();
     }
 
+    public $flashKey = 0;
+
     public function delete($id) {
         $post = Post::findOrFail($id);
 
@@ -30,6 +32,8 @@ class MyPosts extends Component
         $post->delete();
 
         session()->flash('status','記事を削除しました。');
+
+        $this->flashKey++;
     }
 
     public function clearSearch()

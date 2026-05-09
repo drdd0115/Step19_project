@@ -3,7 +3,14 @@
     <flux:heading size="xl" level="1" class="mb-5">記事作成ページ</flux:heading>
 
     @if (session('status'))
-        <div class="mb-4 p-4 bg-green-100 text-green-700 rounded">
+        <div wire:key="flash-message-{{ $flashKey }}"
+            x-data="{ show: true }"
+            x-init="setTimeout(() => show = false, 3000)"
+            x-show="show"
+            x-transition:leave="transition-opacity ease-in duration-700"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            class="mb-4 p-4 bg-green-100 text-green-700 rounded">
             {{ session('status') }}
         </div>
     @endif
