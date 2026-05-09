@@ -21,7 +21,7 @@ class MyPosts extends Component
     }
 
     public function delete($id) {
-        $post = Post::find($id);
+        $post = Post::findOrFail($id);
 
         if ($post->user_id !== Auth::id()){
             abort(403);
