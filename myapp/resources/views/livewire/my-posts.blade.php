@@ -19,6 +19,10 @@
     <div class="flex justify-between items-center mb-6 gap-4 mt-6">
         <flux:input wire:model.live="search" icon="magnifying-glass" class="w-64" placeholder="タイトルで検索" />
 
+        @if($search)
+            <flux:button type="button" wire:click="clearSearch" icon="x-mark">クリア</flux:button>
+        @endif
+
         @auth
             <flux:button href="{{ route('posts.create') }}" wire:navigate variant="primary">
                 新規作成

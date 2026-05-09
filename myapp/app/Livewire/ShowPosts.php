@@ -22,6 +22,11 @@ class ShowPosts extends Component
         $this->resetPage();
     }
 
+    public function clearSearch() {
+        $this->search = '';
+        $this->resetPage();
+    }
+
     public function render()
     {
         $posts = Post::with('user')

@@ -32,6 +32,11 @@ class MyPosts extends Component
         session()->flash('status','記事を削除しました。');
     }
 
+    public function clearSearch()
+    {
+        $this->search = '';
+        $this->resetPage();
+    }
 
     public function render()
     {
