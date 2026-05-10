@@ -45,7 +45,10 @@ class MyPosts extends Component
     public function render()
     {
         $posts = Post::where('user_id', Auth::id())
-        ->where('title', 'like', "%" . $this->search . "%")
+        ->where(function ($query) {
+            $query->where('title', 'like', '%' . $this->search . '%')
+                ->orWhere('body', 'like', '%' . $this->search . '%');
+        })
         ->latest()
         ->paginate(10);
 
