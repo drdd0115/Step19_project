@@ -19,6 +19,7 @@
         <article class="p-4 shadow-lg">
             <a href="/posts/{{ $post->id }}">
                 <flux:text class="mt-4">{{ $post->created_at->format('y/m/d')}}</flux:text>
+                <flux:badge>{{ $post->category }}</flux:badge>
                 <flux:heading size="lg" level="2">{{ $post->title }}</flux:heading>
                 <flux:text class="mt-2">{{ Str::limit($post->body) }}</flux:text>
                 <flux:text class="mt-4">{{ $post->user->name }}</flux:text>

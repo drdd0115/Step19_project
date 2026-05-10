@@ -46,6 +46,7 @@
     @foreach ($posts as $post)
         <article class="p-4 shadow-lg">
             <flux:text class="mt-4 mb-2">{{ $post->created_at->format('y/m/d')}}</flux:text>
+            <flux:badge>{{ $post->category }}</flux:badge>
             <flux:heading size="lg" level="2">{{ $post->title }}</flux:heading>
             <div class="flex items-center gap-2 shrink-0 mt-2">
                 <flux:button

@@ -18,6 +18,9 @@ class CreatePost extends Component
     #[Validate("required", message: "本文は必須です。")]
     public $body = "";
 
+    #[Validate("required", message: "カテゴリーは必須です。")]
+    public $category = "未分類";
+
     public $flashKey = 0;
 
     public function save() {
@@ -27,9 +30,11 @@ class CreatePost extends Component
             "title" => $this->title,
             "body" => $this->body,
             'user_id' => Auth::id(),
+            'category' => $this->category,
         ]);
 
         $this->reset(['title', 'body']);
+        $this->category = '未分類';
         session()->flash('status', '記事を投稿しました！');
 
         $this->flashKey++;
