@@ -30,6 +30,7 @@ class ShowPosts extends Component
     public function render()
     {
         $posts = Post::with('user')
+            ->where('status', 'published')
             ->where(function ($query) {
                 $query->where('title', 'like', '%' . $this->search . '%')
                     ->orWhere('body', 'like', '%' . $this->search . '%');

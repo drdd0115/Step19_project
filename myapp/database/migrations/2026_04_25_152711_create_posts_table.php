@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('body');
             $table->foreignId('user_id')->constrained('users');
             $table->string('category')->default('未分類')->after('body');
+            $table->string('status')->default('published')->after('category');
         });
     }
 

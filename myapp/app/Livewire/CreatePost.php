@@ -23,7 +23,7 @@ class CreatePost extends Component
 
     public $flashKey = 0;
 
-    public function save() {
+    public function save($status = 'published') {
         $this->validate();
 
         Post::create([
@@ -31,11 +31,12 @@ class CreatePost extends Component
             "body" => $this->body,
             'user_id' => Auth::id(),
             'category' => $this->category,
+            'status' => $status,
         ]);
 
         $this->reset(['title', 'body']);
         $this->category = '未分類';
-        session()->flash('status', '記事を投稿しました！');
+        session()->flash('status', $status === 'draft' ? '下書き保存しました！' : '記事を投稿しました！');
 
         $this->flashKey++;
     }

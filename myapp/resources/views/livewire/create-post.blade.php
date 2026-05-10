@@ -29,7 +29,11 @@
             <flux:textarea x-model="body" wire:model="body" label="本文" rows="8" placeholder="本文を入力" />
             <p class="text-sm text-neutral-500">現在<span x-text="body.length"></span>文字</p>
 
-            <div class="flex justify-end">
+            <div class="flex justify-end gap-2">
+                <flux:button type="button" wire:click="save('draft')">
+                    下書き保存
+                </flux:button>
+
                 <flux:button type="submit" variant="primary">
                     投稿する
                 </flux:button>

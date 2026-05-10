@@ -2,7 +2,7 @@
 <div class="max-w-2xl mx-auto p-6">
     <flux:heading size="xl" level="1" class="mb-5">記事編集ページ</flux:heading>
 
-    <div x-data="{ title: @entangle('title'), body: @entangle('body') }"  class="space-y-2">
+    <div x-data="{ title: @entangle('title'), body: @entangle('body'), category: @entangle('category') }"  class="space-y-2">
         <form wire:submit ="update" class="space-y-6">
             <flux:input x-model="title" wire:model="title" label="タイトル" placeholder="記事のタイトルを入力" />
 
@@ -20,7 +20,12 @@
                 <flux:button href="{{ route('my-posts') }}" wire:navigate>
                     キャンセル
                 </flux:button>
-                <flux:button type="submit" variant="primary">
+
+                <flux:button type="button" wire:click="update('draft')">
+                    下書き保存
+                </flux:button>
+
+                <flux:button type="button" wire:click="update('published')" variant="primary">
                     更新する
                 </flux:button>
             </div>

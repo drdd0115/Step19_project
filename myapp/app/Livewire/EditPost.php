@@ -17,6 +17,12 @@ class EditPost extends Component
     #[Validate('required')]
     public $body = '';
 
+    #[Validate('required')]
+    public $category = '未分類';
+
+    #[Validate('required')]
+    public $status= 'published';
+
     public function mount(Post $post) {
         if($post->user_id !== Auth::id()){
             abort(403);
@@ -25,9 +31,11 @@ class EditPost extends Component
         $this->post = $post;
         $this->title = $post->title;
         $this->body = $post->body;
+        $this->category = $post->category;
+        $this->status = $post->status;
     }
 
-    public function update(){
+    public function update($status = null) {
         $this->validate();
 
         if($this->post->user_id !== Auth::id()){
@@ -37,6 +45,8 @@ class EditPost extends Component
         $this->post->update([
             'title' => $this->title,
             'body' => $this->body,
+            'category' => $this->category,
+            'status' => $status ?? $this->status,
         ]);
 
         session()->flash('status', '記事を更新しました！');
